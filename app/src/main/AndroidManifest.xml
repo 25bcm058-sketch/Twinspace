@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Needed to show the app picker. Play-policy restricted; fine for direct APK
+         distribution (ARCHITECTURE.md §14). -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <application
+        android:name=".TwinSpaceApp"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.TwinSpace"
+        android:allowBackup="false"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Home-screen clone shortcuts deep-link here with EXTRA_CLONE_ID -->
+        </activity>
+
+        <!--
+          Clone processes: the virtualization engine dispatches cloned components
+          into per-clone processes named :clone_<id8> (ARCHITECTURE.md §3).
+          Stub activities/services/providers for dispatch are registered by the
+          engine core in Phase 1; declared here for the Work Profile backend only.
+        -->
+    </application>
+</manifest>
